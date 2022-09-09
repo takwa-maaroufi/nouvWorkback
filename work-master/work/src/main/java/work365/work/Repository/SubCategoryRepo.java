@@ -15,4 +15,7 @@ public interface SubCategoryRepo extends JpaRepository<SubCategory, Integer> {
     List<SubCategory> findByCategoryCategoryName(String categoryName);
     List<SubCategory> findBySubcategoryName(String subcategoryName);
 
+    @Query(value = "SELECT count(*)  FROM SubCategory")
+    public int nbreSubCategory ();
+
 }

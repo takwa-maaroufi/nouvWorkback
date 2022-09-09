@@ -25,6 +25,12 @@ public class MarqueController {
     @Autowired
     MarqueService marqueService;
 
+    @GetMapping("/nbrMarque")
+    public int nbreMarque(){
+        return marqueService.nbreMarque();
+    }
+
+
     @GetMapping("/marques")
     public ResponseEntity<List<Marque>> getAllMarques(@RequestParam(required = false) String nomMarque) {
         try {

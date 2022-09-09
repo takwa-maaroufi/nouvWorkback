@@ -33,6 +33,12 @@ public class SubCategoryController {
     @Autowired
     SubCategoryService subcategoryService;
 
+    @GetMapping("/nbrSubCategory")
+    public int nbreSubCategory(){
+        return subcategoryService.nbreSubCategory();
+    }
+
+
     @GetMapping("/SubCat/{categoryName}")
     @PreAuthorize("hasRole('USER')")
     public List<SubCategory> listSubCategoryByCategory(@PathVariable String categoryName) {

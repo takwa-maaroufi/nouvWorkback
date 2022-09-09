@@ -103,6 +103,16 @@ public class UserController {
         }
     }
 
+    @GetMapping("/listUser")
+    public List<User> listUser() {
+        return userService.listUser();
+    }
+
+    @GetMapping("/nbrClient")
+    public int nbreClient(){
+        return userService.nbreClient();
+    }
+
 
 
 }

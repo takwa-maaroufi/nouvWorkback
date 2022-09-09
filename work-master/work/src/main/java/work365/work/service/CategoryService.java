@@ -123,4 +123,8 @@ public class CategoryService {
         category.setImage(updateCategory.getImage());
         categoryRepo.save(category);
     }*/
+
+    public int nbreCategory() {
+        return categoryRepo.nbreCategory();
+    }
 }

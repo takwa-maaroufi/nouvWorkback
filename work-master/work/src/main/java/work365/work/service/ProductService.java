@@ -204,5 +204,11 @@ public class ProductService {
         return optionalProduct.get();
     }*/
 
+    public int nbreProd() {
+        return productRepository.nbreProd();
+    }
+
+
+
 }
 

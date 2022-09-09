@@ -40,6 +40,11 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
+    @GetMapping("/nbrCategory")
+    public int nbreCategory(){
+        return categoryService.nbreCategory();
+    }
+
 
     @GetMapping("/categories")
     public ResponseEntity<List<Category>> getAllCategories(@RequestParam(required = false) String categoryName) {

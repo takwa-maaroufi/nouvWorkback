@@ -90,4 +90,8 @@ public class MarqueService {
     }
 */
 
+    public int nbreMarque() {
+        return marqueRepository.nbreMarque();
+    }
+
 }

@@ -40,6 +40,12 @@ public class ProductController {
 
     @Autowired
     ProductRepository productRepository;
+
+    @GetMapping("/nbrProduit")
+    public int nbreProd(){
+        return productService.nbreProd();
+    }
+
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts(@RequestParam(required = false) String name) {
         try {

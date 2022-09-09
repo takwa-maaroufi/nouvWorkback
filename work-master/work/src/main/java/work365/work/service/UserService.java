@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import work365.work.Repository.UserRepository;
 import work365.work.dto.RoleDto;
 import work365.work.dto.UserDTO;
 import work365.work.model.Role;
@@ -33,6 +34,9 @@ public class UserService  {
    @Autowired
    private JavaMailSender javaMailSender;
 
+   @Autowired
+    private UserRepository userRepository;
+
     public void initRoleAndUser() {
 
         Role adminRole = new Role();
@@ -54,10 +58,10 @@ public class UserService  {
         userDTO.save(adminUser);
 
        User user = new User();
-       user.setEmail("salwa.1@gmail.com");
-        user.setPassword(getEncodedPassword("salwa@pass"));
-        user.setFirstName("salwa");
-        user.setLastName("hsin");
+       user.setEmail("takwa.1@gmail.com");
+        user.setPassword(getEncodedPassword("takwa@pass"));
+        user.setFirstName("takwa");
+        user.setLastName("Maa");
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(userRole);
         user.setRole(userRoles);
@@ -179,5 +183,14 @@ public class UserService  {
 
     }
 
+
+    public List<User> listUser() {
+        return userRepository.findAll();
     }
+
+    public int nbreClient() {
+        return userRepository.nbreClient()- 1;
+    }
+
+}
 

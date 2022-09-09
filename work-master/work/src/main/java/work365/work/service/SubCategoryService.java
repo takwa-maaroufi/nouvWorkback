@@ -98,5 +98,9 @@ public class SubCategoryService {
     }*/
 
 
+    public int nbreSubCategory() {
+        return subcategoryRepo.nbreSubCategory();
+    }
+
 
 }
