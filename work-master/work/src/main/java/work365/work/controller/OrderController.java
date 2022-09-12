@@ -1,9 +1,11 @@
 package work365.work.controller;
 
 
+import java.io.IOException;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import work365.work.Repository.CheckoutRepo;
@@ -14,6 +16,7 @@ import work365.work.model.AddtoCart;
 import work365.work.model.CheckoutCart;
 import work365.work.service.CartService;
 import work365.work.service.ProductService;
+import work365.work.service.ServiceCart;
 
 
 //Checkout
@@ -26,6 +29,8 @@ public class OrderController {
     ProductService proService;
     @Autowired
     CheckoutRepo checkoutRepo;
+    @Autowired
+    ServiceCart serviceCart;
     //valider  votre commande
     @RequestMapping("checkout_order")
     public ResponseEntity<?> checkout_order(@RequestBody HashMap<String,String> addCartRequest) {
@@ -112,6 +117,7 @@ public class OrderController {
             return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(), ""));
         }
     }
+    // list product by order 
     @GetMapping("/productCheckoutCart/{orderId}")
     public List<CheckoutCart> listProductBySubcategory(@PathVariable String orderId) {
         return cartService.getCheckoutCartByOrderId(orderId);
@@ -123,8 +129,20 @@ public class OrderController {
     }
 
 
+    // edit ststut commande
+    @PutMapping("update/{id}")
+    public ResponseEntity<work365.work.payload.response.ApiResponse> update (@PathVariable long id, String statut ) throws IOException {
 
 
+        System.out.println(" id " + id);
+        if (!serviceCart.findById(id)) {
+            return new ResponseEntity<work365.work.payload.response.ApiResponse>(new work365.work.payload.response.ApiResponse(false, "Error"),
+                    HttpStatus.NOT_FOUND);
+        }
+        serviceCart.editStatut(id, statut);
+        return new ResponseEntity<work365.work.payload.response.ApiResponse>(new work365.work.payload.response.ApiResponse(true, "statut has been updated"), HttpStatus.OK);
 
 
-}
+    }
+
+    }
