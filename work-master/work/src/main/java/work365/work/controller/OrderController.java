@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import work365.work.Repository.CheckoutRepo;
-import work365.work.configuration.ShoppingConfiguration;
+import work365.work.model.Product;
+import work365.work.service.configuration.ShoppingConfiguration;
 import work365.work.controller.Pojo.ApiResponse;
 import work365.work.model.AddtoCart;
 import work365.work.model.CheckoutCart;
-import work365.work.model.Product;
 import work365.work.service.CartService;
 import work365.work.service.ProductService;
 
@@ -117,7 +117,10 @@ public class OrderController {
         return cartService.getCheckoutCartByOrderId(orderId);
     }
 
-
+    @GetMapping("/")
+    public List<CheckoutCart> listCheckoutCart() {
+        return cartService.getAll();
+    }
 
 
 

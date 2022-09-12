@@ -30,7 +30,11 @@ public interface CheckoutRepo  extends JpaRepository<CheckoutCart, Long> {
     @Query("Select checkoutCart  FROM CheckoutCart checkoutCart WHERE checkoutCart.user_id=:user_id group By user_id  ")
     List<CheckoutCart> getAllCheckoutByuserId(@Param("user_id")String user_id);
 
-
+    //@Query("Select checkoutCart  FROM CheckoutCart checkoutCart")
+    //@Query(value="Select id, adress, date, email, first_name, gouvernorat, last_name, order_id, order_date, price, qty, statut, tel, user_id, ville FROM CheckoutCart ORDER BY order_id", nativeQuery=true)
+    @Query(value="Select * FROM `checkout_cart` order by order_id", nativeQuery=true)
+    List<CheckoutCart> getAll();
+    // List<CheckoutCart> findAll();
 
 }
 

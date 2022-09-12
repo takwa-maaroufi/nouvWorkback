@@ -7,8 +7,10 @@ import java.util.Optional;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import work365.work.Repository.CheckoutRepo;
 import work365.work.model.AddtoCart;
 import work365.work.model.CheckoutCart;
+import work365.work.model.Product;
 
 @Configuration
 @EnableJpaAuditing
@@ -24,7 +26,11 @@ public interface CartService {
     List<CheckoutCart> getCheckoutCartByOrderId(String orderId);
     Optional<CheckoutCart> getById(Long id);
 
+    List<CheckoutCart> getAll();
 
+    //public List<Product> listProductByCategory(String categoryName) {
+    //    return productRepository.findByCategoryCategoryName(categoryName);
+    //}
     //CheckOutCart
 }
 

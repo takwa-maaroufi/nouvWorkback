@@ -1,4 +1,4 @@
-package work365.work.configuration;
+package work365.work.service.configuration;
 
 
 import org.springframework.security.core.AuthenticationException;

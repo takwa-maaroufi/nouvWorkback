@@ -124,6 +124,10 @@ public class CartServiceImpl implements CartService {
         return null;
     }
 
+    @Override
+    public List<CheckoutCart> getAll() {
+        return checkOutRepo.getAll();
+    }
 }
 
 

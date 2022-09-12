@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import work365.work.configuration.ShoppingConfiguration;
+import work365.work.service.configuration.ShoppingConfiguration;
 import work365.work.controller.Pojo.ApiResponse;
 import work365.work.model.AddtoCart;
 import work365.work.service.CartService;
