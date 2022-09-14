@@ -130,7 +130,7 @@ public class OrderController {
 
 
     // edit ststut commande
-    @PutMapping("update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<work365.work.payload.response.ApiResponse> update (@PathVariable long id, String statut ) throws IOException {
 
 

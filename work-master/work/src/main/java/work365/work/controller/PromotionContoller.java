@@ -1,4 +1,4 @@
-package work365.work.controller;
+/*package work365.work.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -141,4 +141,3 @@ public class PromotionContoller {
         promotionService.editPromotion(promotionId, promotion);
         return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Promotion has been updated"), HttpStatus.OK);
     }*/
-}

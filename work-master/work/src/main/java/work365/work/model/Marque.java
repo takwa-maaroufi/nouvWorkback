@@ -16,8 +16,8 @@ import java.util.Set;
         private String Logo;
         private String teleMarque;
         private String emailMarque;
-        @Lob
-        private String contrat;
+       // @Lob
+      //  private String contrat;
 
         //   @OneToMany(cascade = CascadeType.REMOVE)
         //  private Set<Product> product;
@@ -62,12 +62,12 @@ import java.util.Set;
             this.emailMarque = emailMarque;
         }
 
-        public String getContrat() {
+      /*  public String getContrat() {
             return contrat;
         }
 
         public void setContrat(String contrat) {
             this.contrat = contrat;
-        }
+        }*/
 
 }

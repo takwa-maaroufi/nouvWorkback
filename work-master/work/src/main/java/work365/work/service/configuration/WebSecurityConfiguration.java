@@ -1,12 +1,10 @@
 package work365.work.service.configuration;
 
 
-import net.bytebuddy.utility.privilege.GetMethodAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -47,7 +45,7 @@ private UserDetailsService jwtService;
                 .authorizeRequests().antMatchers("/authenticate/**","/registerNewUser","/verify/**",
                         "/api/marque/**","/api/category/**","/api/marque/**","/api/subcategory/**","/api/product/**", "/api/category/**", "/api/subcategory/**",
                         "/api/marque/**","api/addtocart/**",
-                        "/api/product/**", "/listUser/**","/api/wishlist/**","api/order/**",
+                        "/api/product/**", "/listUser/**","/api/wishlist/**","/api/order/**",
                         "/nbrClient/**", "/api/recette/**").permitAll()
                 .antMatchers(HttpHeaders.ALLOW).permitAll()
                 .anyRequest().authenticated()

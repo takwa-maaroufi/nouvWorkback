@@ -52,7 +52,7 @@ public class MarqueController {
     }
 
     @PostMapping("/upload" )
-    public ResponseEntity<ResponseMessage> store(@RequestParam("file") MultipartFile file,
+    public ResponseEntity<ResponseMessage> store(
                                                  @RequestParam("file1") MultipartFile file1,
                                                  @RequestParam("nomMarque") String nomMarque,
                                                  @RequestParam("teleMarque") String teleMarque,
@@ -60,15 +60,13 @@ public class MarqueController {
         String message = "";
         try {
 
-            marqueService.store(file, file1, nomMarque, teleMarque, emailMarque);
+            marqueService.store(file1, nomMarque, teleMarque, emailMarque);
 
-            message = "Uploaded the file successfully: " + file.getOriginalFilename()
-                                                         + file1.getOriginalFilename();
+            message = "Uploaded the file successfully: " + file1.getOriginalFilename();
 
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
         } catch (Exception e) {
-            message = "Could not upload the file: " + file.getOriginalFilename()
-                                                    + file1.getOriginalFilename() + "!";
+            message = "Could not upload the file: " + file1.getOriginalFilename() + "!";
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
         }
 
@@ -92,7 +90,6 @@ public class MarqueController {
 
 @PutMapping("/update/{marqueId}")
     public ResponseEntity<ApiResponse> editMarque(@PathVariable("marqueId") int marqueId,
-                                                  @RequestParam("file") MultipartFile file,
                                                   @RequestParam("file1") MultipartFile file1,
                                                   @RequestParam("nomMarque") String nomMarque,
                                                   @RequestParam("teleMarque") String teleMarque,
@@ -103,7 +100,7 @@ public class MarqueController {
             return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Brand does not exists"),
                     HttpStatus.NOT_FOUND);
         }
-        marqueService.editMarque(marqueId, file, file1, nomMarque, teleMarque, emailMarque);
+        marqueService.editMarque(marqueId, file1,  nomMarque, teleMarque, emailMarque);
         return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Brand has been updated"), HttpStatus.OK);
     }
 

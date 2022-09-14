@@ -19,17 +19,18 @@ public class MarqueService {
     MarqueRepository marqueRepository;
 
 
-    public Marque store(MultipartFile file, MultipartFile file1, String nomMarque,
+    public Marque store(MultipartFile file1,  String nomMarque,
                           String teleMarque, String emailMarque) throws IOException {
         Marque m = new Marque();
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+      //  String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         String fileName1 = StringUtils.cleanPath(file1.getOriginalFilename());
-        if((fileName.contains("..")) && (fileName1.contains("..") ) )
+        if((fileName1.contains("..")) )
+
         {
             System.out.println("not a a valid file");
         }
         try {
-            m.setContrat(Base64.getEncoder().encodeToString(file.getBytes()));
+         //   m.setContrat(Base64.getEncoder().encodeToString(file.getBytes()));
             m.setLogo(Base64.getEncoder().encodeToString(file1.getBytes()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -52,14 +53,14 @@ public class MarqueService {
         return marqueRepository.findById(marqueId);
     }
 
-    public void editMarque( int marqueId, MultipartFile file, MultipartFile file1 , String nomMarque,
+    public void editMarque( int marqueId,MultipartFile file1 , String nomMarque,
     String emailMarque , String teleMarque )throws IOException {
         Marque marque = marqueRepository.getById(marqueId);
         marque.setNomMarque(nomMarque);
         marque.setLogo(Base64.getEncoder().encodeToString(file1.getBytes()));
         marque.setEmailMarque(emailMarque);
         marque.setTeleMarque(teleMarque);
-        marque.setContrat(Base64.getEncoder().encodeToString(file.getBytes()));
+       // marque.setContrat(Base64.getEncoder().encodeToString(file.getBytes()));
         marqueRepository.save(marque);
     }
 
