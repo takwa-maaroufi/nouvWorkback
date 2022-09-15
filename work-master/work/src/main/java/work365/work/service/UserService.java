@@ -57,15 +57,15 @@ public class UserService  {
         adminUser.setRole(adminRoles);
         userDTO.save(adminUser);
 
-       User user = new User();
-       user.setEmail("takwa.1@gmail.com");
-        user.setPassword(getEncodedPassword("takwa@pass"));
-        user.setFirstName("takwa");
-        user.setLastName("Maa");
-        Set<Role> userRoles = new HashSet<>();
-        userRoles.add(userRole);
-        user.setRole(userRoles);
-    userDTO.save(user);
+       // User user = new User();
+       // user.setEmail("takwa.1@gmail.com");
+       // user.setPassword(getEncodedPassword("takwa@pass"));
+       // user.setFirstName("takwa");
+       // user.setLastName("Maa");
+       // Set<Role> userRoles = new HashSet<>();
+       // userRoles.add(userRole);
+       // user.setRole(userRoles);
+    // userDTO.save(user);
     }
 
    /* public User registerNewUser(User user  , String siteURL)

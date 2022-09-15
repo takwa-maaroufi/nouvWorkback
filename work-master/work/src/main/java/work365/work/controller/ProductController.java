@@ -4,7 +4,6 @@ package work365.work.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import work365.work.Repository.*;
@@ -130,12 +129,10 @@ public class ProductController {
 
 
     @GetMapping("/productCategory/{categoryName}")
-    @PreAuthorize("hasRole('USER')")
     public List<Product> listProductByCategory(@PathVariable String categoryName) {
         return productService.listProductByCategory(categoryName);
     }
     @GetMapping("/productSubcategory/{subcategoryName}")
-    @PreAuthorize("hasRole('USER')")
     public List<Product> listProductBySubcategory(@PathVariable String subcategoryName) {
         return productService.listProductBySubcategory(subcategoryName);
     }

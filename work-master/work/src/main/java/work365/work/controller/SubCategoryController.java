@@ -40,12 +40,10 @@ public class SubCategoryController {
 
 
     @GetMapping("/SubCat/{categoryName}")
-    @PreAuthorize("hasRole('USER')")
     public List<SubCategory> listSubCategoryByCategory(@PathVariable String categoryName) {
         return subcategoryService.listSubCategoryByCategory(categoryName);
     }
     @GetMapping("/productSubcategory/{subcategoryName}")
-    @PreAuthorize("hasRole('USER')")
     public List<SubCategory> listSubCategoryBySubcategory(@PathVariable String subcategoryName) {
         return subcategoryService.listSubCategoryBySubcategory(subcategoryName);
     }

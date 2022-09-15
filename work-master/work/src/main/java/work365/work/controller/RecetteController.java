@@ -102,13 +102,14 @@ public class RecetteController {
     public ResponseEntity<ApiResponse> editRecette(@PathVariable("id") int id,
                                                    @RequestParam("file") MultipartFile file,
                                                    @RequestParam("nomRecette") String nomRecette,
-                                                   @RequestParam("description") String description) throws IOException {
+                                                   @RequestParam("description") String description,
+                                                   @RequestParam("products") int[] products) throws IOException {
         System.out.println("id " + id);
         if (!recetteService.findById(id)) {
             return new ResponseEntity<ApiResponse>(new ApiResponse(false, "recette does not exists"),
                     HttpStatus.NOT_FOUND);
         }
-        recetteService.editRecette(file, id, nomRecette, description);
+        recetteService.editRecette(file, id, nomRecette, description, products);
         return new ResponseEntity<ApiResponse>(new ApiResponse(true, "recette has been updated"), HttpStatus.OK);
 
     }

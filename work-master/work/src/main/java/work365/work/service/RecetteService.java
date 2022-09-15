@@ -66,12 +66,19 @@ public class RecetteService {
         return recetteRepo.findById(id);
     }
     public void editRecette(MultipartFile file ,int id, String nomRecette,
-                            String description) throws IOException {
+                            String description, int[] products) throws IOException {
         Recette recette = recetteRepo.getById(id);
-
+        List <Product> x = new ArrayList<>();
+        for (int i = 0; i < products.length; i++) {
+            //System.out.println(products[i]);
+            Product p = new Product();
+            p.setId(products[i]);
+            x.add(p);
+        }
         recette.setNomRecette(nomRecette);
         recette.setDescription(description);
         recette.setImageRecette(Base64.getEncoder().encodeToString(file.getBytes()));
+        recette.setProducts(x);
         recetteRepo.save(recette);
     }
 
