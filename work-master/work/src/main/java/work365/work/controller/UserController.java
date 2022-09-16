@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import work365.work.Repository.UserRepository;
 import work365.work.message.ResponseMessage;
+import work365.work.model.Category;
 import work365.work.model.User;
 import work365.work.service.JwtService;
 import work365.work.service.UserService;
@@ -20,6 +22,7 @@ import javax.annotation.PostConstruct;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +34,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    UserRepository userRepository;
 
     @PostConstruct
     public void initRoleAndUser() {
@@ -113,6 +119,26 @@ public class UserController {
         return userService.nbreClient();
     }
 
+
+    @GetMapping("/rechercehUser")
+    public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String email) {
+        try {
+            List<User> users = new ArrayList<>();
+
+            if (email == null)
+                userRepository.findAll().forEach(users::add);
+            else
+                userRepository.findByEmailContaining(email);
+
+            if (users.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 }

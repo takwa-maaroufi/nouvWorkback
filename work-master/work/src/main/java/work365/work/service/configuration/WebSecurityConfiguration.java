@@ -46,7 +46,7 @@ private UserDetailsService jwtService;
                         "/api/marque/**","/api/category/**","/api/marque/**","/api/subcategory/**","/api/product/**", "/api/category/**", "/api/subcategory/**",
                         "/api/marque/**","api/addtocart/**",
                         "/api/product/**", "/listUser/**","/api/wishlist/**","/api/order/**",
-                        "/nbrClient/**", "/api/recette/**").permitAll()
+                        "/nbrClient/**", "/api/recette/**", "/rechercehUser/**").permitAll()
                 .antMatchers(HttpHeaders.ALLOW).permitAll()
                 .anyRequest().authenticated()
                 .and()

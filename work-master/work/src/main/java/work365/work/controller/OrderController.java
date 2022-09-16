@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import work365.work.Repository.CheckoutRepo;
+import work365.work.model.Category;
 import work365.work.model.Product;
 import work365.work.service.configuration.ShoppingConfiguration;
 import work365.work.controller.Pojo.ApiResponse;
@@ -145,4 +146,25 @@ public class OrderController {
 
     }
 
+
+    @GetMapping("/rechercheCmd")
+    public ResponseEntity<List<CheckoutCart>> getAllCheckoutCarts(@RequestParam(required = false) String tel) {
+        try {
+            List<CheckoutCart> checkoutCarts = new ArrayList<CheckoutCart>();
+
+            if (tel== null)
+                checkoutRepo.findAll().forEach(checkoutCarts::add);
+            else
+                checkoutRepo.findByTelContaining(tel);
+
+            if (checkoutCarts.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(checkoutCarts, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
+}

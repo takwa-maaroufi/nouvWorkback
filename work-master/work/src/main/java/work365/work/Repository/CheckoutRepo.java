@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import work365.work.model.AddtoCart;
+import work365.work.model.Category;
 import work365.work.model.CheckoutCart;
 import work365.work.model.Product;
 
@@ -36,4 +37,5 @@ public interface CheckoutRepo  extends JpaRepository<CheckoutCart, Long> {
     List<CheckoutCart> getAll();
     // List<CheckoutCart> findAll();
 
+    List<Category>findByTelContaining(String tel);
 }

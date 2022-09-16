@@ -3,6 +3,7 @@ package work365.work.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import work365.work.model.Category;
 import work365.work.model.User;
 
 import java.util.List;
@@ -17,4 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = "SELECT count(*)  FROM User")
     public int nbreClient();
+
+    List<Category>findByEmailContaining(String email);
+
 }
